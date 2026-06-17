@@ -1,0 +1,11 @@
+<!-- Elemen tetap: bunting, tombol musik/jeda, toast, hitung mundur, confetti -->
+<div id="bunting" class="bunting absolute top-0 left-0 w-full h-[30px] z-[3] pointer-events-none"></div>
+
+<button id="btnMusic" title="Musik"
+  class="absolute top-1.5 left-2 z-30 w-[42px] h-[42px] rounded-full bg-white/85 shadow-[0_2px_6px_rgba(0,0,0,.2)] text-xl flex items-center justify-center active:scale-90 transition">🔊</button>
+<button id="btnPause" title="Jeda"
+  class="hidden absolute top-1.5 right-2 z-30 w-[42px] h-[42px] rounded-full bg-white/85 shadow-[0_2px_6px_rgba(0,0,0,.2)] text-lg items-center justify-center active:scale-90 transition">⏸</button>
+
+<div id="toast" class="toast absolute top-[28%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-[15] text-4xl font-black text-emasTua pointer-events-none"></div>
+<div id="countdown" class="countdown hidden absolute inset-0 z-[18] flex items-center justify-center text-[118px] font-black text-merah pointer-events-none"></div>
+<canvas id="confetti" class="absolute inset-0 z-40 pointer-events-none"></canvas>

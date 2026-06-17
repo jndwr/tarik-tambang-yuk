@@ -1,0 +1,98 @@
+/* ============================================================
+   Tarik Tambang Yuk! — gaya kustom untuk elemen grafis yang
+   sulit dibuat murni dengan utility Tailwind (SVG, tekstur,
+   pseudo-element, dan animasi yang di-toggle lewat JS).
+   Tata letak / warna / tipografi utama memakai Tailwind.
+   ============================================================ */
+:root{
+  --merah:#d9333f;--merah-tua:#b01e29;--emas:#ffce3a;--emas-tua:#e0a500;
+  --krem:#f6efe3;--kulit:#f3c39a;--rambut:#3a3433;--ink:#3a2a20;--rope:#d9b779;--hijau:#1f8a4c;
+}
+
+/* ---- umbul-umbul / bunting ---- */
+.bunting{display:flex;justify-content:space-around}
+.bunting span{width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;
+  border-top:18px solid var(--merah);filter:drop-shadow(0 1px 1px rgba(0,0,0,.15))}
+.bunting span:nth-child(even){border-top-color:var(--emas)}
+
+/* ---- arena: tali, simpul, bayangan ---- */
+.ground-shadow{background:radial-gradient(60% 100% at 50% 50%,rgba(0,0,0,.10),transparent 70%)}
+.rope{background:linear-gradient(var(--rope),#c79f5e);box-shadow:0 3px 4px rgba(0,0,0,.18);overflow:hidden}
+.rope::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(60deg,rgba(0,0,0,.10) 0 4px,transparent 4px 9px)}
+.knot{transition:left .08s linear}
+.knot svg{display:block;overflow:visible}
+
+/* ---- karakter SVG ---- */
+.kidsvg{width:74px;height:96px;margin:0 -14px;display:block;overflow:visible}
+.kidsvg .lean{transform-origin:60px 165px;transform:rotate(-6deg)}
+.team{transition:none}
+.team.left{transform:translateY(-50%)}
+.team.right{transform:translateY(-50%) scaleX(-1)}
+.team.yank .lean{animation:yank .16s ease}
+@keyframes yank{50%{transform:rotate(-13deg) translateX(-5px)}}
+
+/* ---- tombol PEJET (efek 3D) ---- */
+.pejet{flex:1;height:84px;border:none;border-radius:22px;cursor:pointer;font-size:24px;font-weight:900;color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  background:linear-gradient(#ff6a72,var(--merah));box-shadow:0 7px 0 var(--merah-tua),0 10px 16px rgba(0,0,0,.22);
+  text-shadow:0 2px 2px rgba(0,0,0,.25);transition:transform .04s,box-shadow .04s}
+.pejet small{font-size:12px;opacity:.85;font-weight:700}
+.pejet.p2{background:linear-gradient(#ffd95e,var(--emas));color:#5a4012;text-shadow:none;
+  box-shadow:0 7px 0 var(--emas-tua),0 10px 16px rgba(0,0,0,.22)}
+.pejet:active,.pejet.down{transform:translateY(6px);box-shadow:0 2px 0 var(--merah-tua),0 4px 8px rgba(0,0,0,.25)}
+.pejet.p2:active,.pejet.p2.down{box-shadow:0 2px 0 var(--emas-tua),0 4px 8px rgba(0,0,0,.25)}
+
+/* ---- countdown & toast ---- */
+.countdown{text-shadow:0 4px 0 #fff,0 8px 16px rgba(0,0,0,.25)}
+.countdown.pop{animation:cdpop .6s ease}
+@keyframes cdpop{0%{transform:scale(.4);opacity:0}40%{transform:scale(1.1);opacity:1}100%{transform:scale(1);opacity:1}}
+.toast{opacity:0;text-shadow:0 2px 0 #fff,0 5px 8px rgba(0,0,0,.25)}
+.toast.show{animation:toastPop .7s ease}
+@keyframes toastPop{0%{opacity:0;transform:translate(-50%,-30%) scale(.6)}
+  30%{opacity:1;transform:translate(-50%,-50%) scale(1.15)}100%{opacity:0;transform:translate(-50%,-72%) scale(1)}}
+
+/* ---- transisi antar layar (di-toggle .hidden lewat JS) ---- */
+.screen:not(.hidden){animation:ovFade .28s ease}
+.screen:not(.hidden) > div{animation:cardIn .42s cubic-bezier(.2,.85,.25,1)}
+@keyframes ovFade{from{opacity:0}to{opacity:1}}
+@keyframes cardIn{from{opacity:0;transform:translateY(26px) scale(.9)}to{opacity:1;transform:none}}
+
+/* ---- splash ---- */
+#scrSplash{background:linear-gradient(#bfe9ff 0%,#9bd6f5 45%,#7ec8f2 78%,#cda86a 78%,#b78c4d 100%)}
+.splash-sun{background:radial-gradient(circle at 40% 40%,#fff6c8,#ffd23f 60%,#ffb700);box-shadow:0 0 36px rgba(255,210,63,.8)}
+.splash-title{text-shadow:0 3px 0 var(--merah),0 6px 0 var(--merah-tua),0 10px 14px rgba(0,0,0,.3)}
+.splash-scene .rope2{position:absolute;top:54%;left:0;width:100%;height:8px;transform:translateY(-50%);
+  background:linear-gradient(var(--rope),#c79f5e);border-radius:6px}
+.splash-scene .sknot{position:absolute;top:54%;left:50%;width:18px;height:24px;transform:translate(-50%,-50%);
+  background:linear-gradient(var(--merah) 50%,#fff 50%);border-radius:2px;z-index:2}
+.splash-scene .sk{position:absolute;top:50%;transform:translateY(-50%);width:64px;height:84px}
+.splash-scene .sk.l1{left:2%}.splash-scene .sk.l2{left:20%}
+.splash-scene .sk.r1{right:2%}.splash-scene .sk.r2{right:20%}
+.splash-scene .sk.r1 svg,.splash-scene .sk.r2 svg{transform:scaleX(-1)}
+
+/* ---- progress 5 stage ---- */
+.stagedots{display:flex;gap:7px;justify-content:center}
+.stagedots span{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:13px;background:#eee;color:#aaa;border:2px solid #ddd}
+.stagedots span.done{background:var(--hijau);color:#fff;border-color:#146134}
+.stagedots span.now{background:var(--emas);color:#5a4012;border-color:var(--merah);transform:scale(1.12)}
+
+/* ---- papan skor ---- */
+.lb{list-style:none}
+.lb li{display:flex;align-items:center;gap:10px;padding:10px;border-radius:13px;font-weight:700;font-size:14px}
+.lb li:nth-child(odd){background:#fff6e6}
+.lb li.me{background:#ffe3a6;box-shadow:0 0 0 2px var(--merah) inset}
+.lb .rank{font-weight:900;width:30px;text-align:center;color:var(--emas-tua);font-size:16px}
+.lb .nm{flex:1;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lb .nm .meta{font-size:11px;color:#9a866b;font-weight:600}
+.lb .pts{font-weight:900;color:var(--merah);text-align:right}
+.lb .pts small{display:block;font-size:10px;color:#9a866b}
+.lb-empty{color:#9a866b;font-style:italic;padding:18px;text-align:center}
+
+/* opsi terpilih di setup */
+.sel{background:var(--emas)!important;border-color:var(--merah)!important}
+
+.scorebox .pts{display:block;font-size:32px;color:var(--merah);line-height:1.1}
+.crown{animation:bob 1.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}

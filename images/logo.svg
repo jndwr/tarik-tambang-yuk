@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe9ff"/><stop offset="1" stop-color="#7ec8f2"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="58" fill="url(#sky)" stroke="#d9333f" stroke-width="4"/>
+  <!-- tanah -->
+  <path d="M2 84 a58 58 0 0 0 116 0 Z" fill="#caa15a"/>
+  <!-- tali -->
+  <rect x="10" y="62" width="100" height="6" rx="3" fill="#d9b779"/>
+  <!-- simpul bendera merah-putih -->
+  <rect x="57" y="44" width="6" height="40" rx="2" fill="#7a4a16"/>
+  <rect x="60" y="46" width="20" height="8" fill="#d9333f"/>
+  <rect x="60" y="54" width="20" height="8" fill="#fff"/>
+  <!-- tangan kiri & kanan menarik -->
+  <circle cx="30" cy="65" r="9" fill="#f3c39a"/>
+  <circle cx="90" cy="65" r="9" fill="#f3c39a"/>
+  <!-- aksen bintang emas -->
+  <path d="M60 14 l3 7 7 .5 -5 5 1.5 7 -6.5 -3.5 -6.5 3.5 1.5 -7 -5 -5 7 -.5 Z" fill="#ffce3a" stroke="#e0a500" stroke-width="1"/>
+</svg>
